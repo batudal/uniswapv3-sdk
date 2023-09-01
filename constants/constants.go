@@ -30,7 +30,7 @@ const (
 var TickSpacings = map[FeeAmount]int{
 	FeeLowest: 1,
 	FeeLow:    10,
-	FeeMedium: 60,
+	FeeMedium: 50,
 	FeeHigh:   200,
 }
 
