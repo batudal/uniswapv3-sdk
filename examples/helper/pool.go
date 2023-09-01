@@ -35,16 +35,16 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 	if err != nil {
 		return nil, err
 	}
-
+	println("poolAddress: ", poolAddress.String())
 	contractPool, err := contract.NewUniswapv3Pool(poolAddress, client)
 	if err != nil {
 		return nil, err
 	}
-
 	liquidity, err := contractPool.Liquidity(nil)
 	if err != nil {
 		return nil, err
 	}
+	println("liquidity: ", liquidity.String())
 
 	slot0, err := contractPool.Slot0(nil)
 	if err != nil {
@@ -77,7 +77,7 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 	if err != nil {
 		return nil, err
 	}
-
+	println("slot0.SqrtPriceX96: ", slot0.SqrtPriceX96.String())
 	return entities.NewPool(token0, token1, constants.FeeAmount(poolFee),
 		slot0.SqrtPriceX96, liquidity, int(slot0.Tick.Int64()), p)
 }

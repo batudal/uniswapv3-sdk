@@ -20,7 +20,7 @@ type FeeAmount uint64
 const (
 	FeeLowest FeeAmount = 100
 	FeeLow    FeeAmount = 500
-	FeeMedium FeeAmount = 3000
+	FeeMedium FeeAmount = 2500
 	FeeHigh   FeeAmount = 10000
 
 	FeeMax FeeAmount = 1000000
