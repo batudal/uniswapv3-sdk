@@ -36,7 +36,7 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 		return nil, err
 	}
 	println("poolAddress: ", poolAddress.String())
-	contractPool, err := contract.NewUniswapv3Pool(poolAddress, client)
+	contractPool, err := contract.NewPancakev3(poolAddress, client)
 	if err != nil {
 		return nil, err
 	}
