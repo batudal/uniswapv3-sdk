@@ -2,7 +2,6 @@ package helper
 
 import (
 	"context"
-	"fmt"
 	"math/big"
 
 	"github.com/ethereum/go-ethereum"
@@ -11,7 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-//SendTx Send a real transaction to the blockchain.
+// SendTx Send a real transaction to the blockchain.
 func SendTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 	data []byte, w *Wallet) (*types.Transaction, error) {
 	signedTx, err := TryTX(client, toAddress, value, data, w)
@@ -21,7 +20,7 @@ func SendTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 	return signedTx, client.SendTransaction(context.Background(), signedTx)
 }
 
-//Trytx Trying to send a transaction, it just return the transaction hash if success.
+// Trytx Trying to send a transaction, it just return the transaction hash if success.
 func TryTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 	data []byte, w *Wallet) (*types.Transaction, error) {
 	gasPrice, err := client.SuggestGasPrice(context.Background())
@@ -40,7 +39,6 @@ func TryTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 		return nil, err
 	}
 
-	fmt.Printf("gasLimit=%d,  gasPrice=%d\n", gasLimit, gasPrice.Uint64())
 	nounc, err := client.NonceAt(context.Background(), w.PublicKey, nil)
 	if err != nil {
 		return nil, err
