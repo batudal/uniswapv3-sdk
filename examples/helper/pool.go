@@ -35,7 +35,6 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 	if err != nil {
 		return nil, err
 	}
-	println("poolAddress: ", poolAddress.String())
 	contractPool, err := contract.NewPancakev3(poolAddress, client)
 	if err != nil {
 		return nil, err
@@ -44,24 +43,14 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 	if err != nil {
 		return nil, err
 	}
-	println("liquidity: ", liquidity.String())
-
 	slot0, err := contractPool.Slot0(nil)
 	if err != nil {
 		return nil, err
 	}
-	println("slot check")
-
 	pooltick, err := contractPool.Ticks(nil, big.NewInt(0))
 	if err != nil {
 		return nil, err
 	}
-	println("pooltick check")
-	println("pooltick check")
-	println("pooltick check")
-	println("pooltick check")
-	println("pooltick check")
-
 	feeAmount := constants.FeeAmount(poolFee)
 	ticks := []entities.Tick{
 		{
@@ -77,14 +66,11 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 			LiquidityGross: pooltick.LiquidityGross,
 		},
 	}
-	println("ticks check")
-
 	// create tick data provider
 	p, err := entities.NewTickListDataProvider(ticks, constants.TickSpacings[feeAmount])
 	if err != nil {
 		return nil, err
 	}
-	println("slot0.SqrtPriceX96: ", slot0.SqrtPriceX96.String())
 	return entities.NewPool(token0, token1, constants.FeeAmount(poolFee),
 		slot0.SqrtPriceX96, liquidity, int(slot0.Tick.Int64()), p)
 }

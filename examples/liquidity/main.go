@@ -38,7 +38,6 @@ func mintOrAdd(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int
 		log.Fatal(err)
 	}
 	onePercent := coreEntities.NewPercent(big.NewInt(1), big.NewInt(100))
-	log.Println(pos.MintAmountsWithSlippage(onePercent))
 
 	d := time.Now().Add(time.Minute * time.Duration(15)).Unix()
 	deadline := big.NewInt(d)
@@ -73,7 +72,6 @@ func mintOrAdd(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("0x%x  value=%s\n", params.Calldata, params.Value.String())
 
 	//matic is a native token, so we need to set the actually value to transfer
 	tx, err := helper.TryTX(client, common.HexToAddress(helper.ContractV3NFTPositionManager),
