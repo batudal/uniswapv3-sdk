@@ -7,11 +7,11 @@ import (
 
 	"log"
 
+	"github.com/batudal/uniswapv3-sdk/constants"
+	"github.com/batudal/uniswapv3-sdk/entities"
+	"github.com/batudal/uniswapv3-sdk/examples/helper"
+	"github.com/batudal/uniswapv3-sdk/periphery"
 	coreEntities "github.com/daoleno/uniswap-sdk-core/entities"
-	"github.com/daoleno/uniswapv3-sdk/constants"
-	"github.com/daoleno/uniswapv3-sdk/entities"
-	"github.com/daoleno/uniswapv3-sdk/examples/helper"
-	"github.com/daoleno/uniswapv3-sdk/periphery"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
@@ -29,8 +29,9 @@ func main() {
 	if wallet == nil {
 		log.Fatal("init wallet failed")
 	}
+	factory := common.Address{}
 
-	pool, err := helper.ConstructV3Pool(client, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
+	pool, err := helper.ConstructV3Pool(client, factory, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
 	if err != nil {
 		log.Fatal(err)
 	}

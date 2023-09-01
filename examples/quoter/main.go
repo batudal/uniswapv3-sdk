@@ -6,8 +6,8 @@ import (
 
 	"log"
 
-	"github.com/daoleno/uniswapv3-sdk/examples/contract"
-	"github.com/daoleno/uniswapv3-sdk/examples/helper"
+	"github.com/batudal/uniswapv3-sdk/examples/contract"
+	"github.com/batudal/uniswapv3-sdk/examples/helper"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )

@@ -4,9 +4,9 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/batudal/uniswapv3-sdk/constants"
+	"github.com/batudal/uniswapv3-sdk/utils"
 	"github.com/daoleno/uniswap-sdk-core/entities"
-	"github.com/daoleno/uniswapv3-sdk/constants"
-	"github.com/daoleno/uniswapv3-sdk/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 )

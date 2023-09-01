@@ -7,22 +7,22 @@ import (
 	"strings"
 	"time"
 
+	"github.com/batudal/uniswapv3-sdk/constants"
+	"github.com/batudal/uniswapv3-sdk/entities"
+	"github.com/batudal/uniswapv3-sdk/examples/contract"
+	"github.com/batudal/uniswapv3-sdk/examples/helper"
+	"github.com/batudal/uniswapv3-sdk/periphery"
 	coreEntities "github.com/daoleno/uniswap-sdk-core/entities"
-	"github.com/daoleno/uniswapv3-sdk/constants"
-	"github.com/daoleno/uniswapv3-sdk/entities"
-	"github.com/daoleno/uniswapv3-sdk/examples/contract"
-	"github.com/daoleno/uniswapv3-sdk/examples/helper"
-	"github.com/daoleno/uniswapv3-sdk/periphery"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-//mint a new liquidity
-func mintOrAdd(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int) {
+// mint a new liquidity
+func mintOrAdd(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int, factory common.Address) {
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
 
-	pool, err := helper.ConstructV3Pool(client, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
+	pool, err := helper.ConstructV3Pool(client, factory, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -84,9 +84,9 @@ func mintOrAdd(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int
 	log.Println(tx.Hash().String())
 }
 
-func remove(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int) {
+func remove(client *ethclient.Client, wallet *helper.Wallet, tokenID *big.Int, factory common.Address) {
 	//our pool is the fee medium pool
-	pool, err := helper.ConstructV3Pool(client, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
+	pool, err := helper.ConstructV3Pool(client, factory, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
 	if err != nil {
 		log.Fatal(err)
 	}

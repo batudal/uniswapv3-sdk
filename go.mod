@@ -1,10 +1,10 @@
-module github.com/daoleno/uniswapv3-sdk
+module github.com/batudal/uniswapv3-sdk
 
 go 1.18
 
 require (
-	github.com/daoleno/uniswap-sdk-core v0.1.5
-	github.com/ethereum/go-ethereum v1.10.20
+	github.com/daoleno/uniswap-sdk-core v0.1.7
+	github.com/ethereum/go-ethereum v1.10.21
 	github.com/shopspring/decimal v1.3.1
 	github.com/stretchr/testify v1.8.0
 )
@@ -18,6 +18,7 @@ require (
 	github.com/go-stack/stack v1.8.1 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/kr/pretty v0.3.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rjeczalik/notify v0.9.2 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect

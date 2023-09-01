@@ -4,18 +4,18 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/daoleno/uniswapv3-sdk/examples/contract"
+	"github.com/batudal/uniswapv3-sdk/examples/contract"
 
+	"github.com/batudal/uniswapv3-sdk/constants"
+	"github.com/batudal/uniswapv3-sdk/entities"
+	sdkutils "github.com/batudal/uniswapv3-sdk/utils"
 	coreEntities "github.com/daoleno/uniswap-sdk-core/entities"
-	"github.com/daoleno/uniswapv3-sdk/constants"
-	"github.com/daoleno/uniswapv3-sdk/entities"
-	sdkutils "github.com/daoleno/uniswapv3-sdk/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-func GetPoolAddress(client *ethclient.Client, token0, token1 common.Address, fee *big.Int) (common.Address, error) {
-	f, err := contract.NewUniswapv3Factory(common.HexToAddress(ContractV3Factory), client)
+func GetPoolAddress(client *ethclient.Client, factory common.Address, token0, token1 common.Address, fee *big.Int) (common.Address, error) {
+	f, err := contract.NewUniswapv3Factory(factory, client)
 	if err != nil {
 		return common.Address{}, err
 	}
@@ -30,8 +30,8 @@ func GetPoolAddress(client *ethclient.Client, token0, token1 common.Address, fee
 	return poolAddr, nil
 }
 
-func ConstructV3Pool(client *ethclient.Client, token0, token1 *coreEntities.Token, poolFee uint64) (*entities.Pool, error) {
-	poolAddress, err := GetPoolAddress(client, token0.Address, token1.Address, new(big.Int).SetUint64(poolFee))
+func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, token1 *coreEntities.Token, poolFee uint64) (*entities.Pool, error) {
+	poolAddress, err := GetPoolAddress(client, factory, token0.Address, token1.Address, new(big.Int).SetUint64(poolFee))
 	if err != nil {
 		return nil, err
 	}
