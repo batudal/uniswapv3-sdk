@@ -57,6 +57,10 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 		return nil, err
 	}
 	println("pooltick check")
+	println("pooltick check")
+	println("pooltick check")
+	println("pooltick check")
+	println("pooltick check")
 
 	feeAmount := constants.FeeAmount(poolFee)
 	ticks := []entities.Tick{
