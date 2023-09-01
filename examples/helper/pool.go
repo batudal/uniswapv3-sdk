@@ -50,11 +50,13 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 	if err != nil {
 		return nil, err
 	}
+	println("slot check")
 
 	pooltick, err := contractPool.Ticks(nil, big.NewInt(0))
 	if err != nil {
 		return nil, err
 	}
+	println("pooltick check")
 
 	feeAmount := constants.FeeAmount(poolFee)
 	ticks := []entities.Tick{
@@ -71,6 +73,7 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 			LiquidityGross: pooltick.LiquidityGross,
 		},
 	}
+	println("ticks check")
 
 	// create tick data provider
 	p, err := entities.NewTickListDataProvider(ticks, constants.TickSpacings[feeAmount])
