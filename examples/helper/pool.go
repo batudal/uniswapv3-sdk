@@ -67,6 +67,7 @@ func ConstructV3Pool(client *ethclient.Client, factory common.Address, token0, t
 		},
 	}
 	// create tick data provider
+	ticks[1].LiquidityNet = big.NewInt(0).Sub(big.NewInt(0), pooltick.LiquidityNet)
 	p, err := entities.NewTickListDataProvider(ticks, constants.TickSpacings[feeAmount])
 	if err != nil {
 		return nil, err
