@@ -10,6 +10,8 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
+//
+
 func SendTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 	data []byte, w *Wallet) (*types.Transaction, error) {
 	signedTx, err := TryTX(client, toAddress, value, data, w)
