@@ -38,7 +38,7 @@ func TryTX(client *ethclient.Client, toAddress common.Address, value *big.Int,
 	if err != nil {
 		return nil, err
 	}
-
+	gasLimit = gasLimit * 2
 	nounc, err := client.NonceAt(context.Background(), w.PublicKey, nil)
 	if err != nil {
 		return nil, err
